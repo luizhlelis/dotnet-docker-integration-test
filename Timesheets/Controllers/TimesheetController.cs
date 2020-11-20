@@ -64,6 +64,10 @@ namespace DotnetDockerIntegrationTests.Controllers
         public async Task<IActionResult> DeleteTimeEntryAsync(Guid timeEntryId)
         {
             var timeEntry = _dbContext.TimeEntries.FirstOrDefault(x => x.Id == timeEntryId);
+
+            if (timeEntry is null)
+                return NotFound();
+
             _dbContext.TimeEntries.Remove(timeEntry);
             await _dbContext.SaveChangesAsync();
 
