@@ -4,7 +4,8 @@ using Xunit;
 
 namespace Timesheets.Tests.Setup
 {
-    public class IntegrationTestsFixtureCollection : ICollectionFixture<IntegrationTestsFixture<StartupTests>>
+    [CollectionDefinition(nameof(IntegrationTestsFixtureCollection))]
+    public class IntegrationTestsFixtureCollection : ICollectionFixture<IntegrationTestsFixture<Startup>>
     { }
 
     public class IntegrationTestsFixture<TStartup> : IDisposable where TStartup : class
