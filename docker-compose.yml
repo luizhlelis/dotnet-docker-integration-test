@@ -19,3 +19,19 @@ services:
       ACCEPT_EULA: "Y"
     ports:
       - "1433:1433"
+  integration-tests:
+    container_name: integration-tests
+    build:
+      context: .
+    command:
+    [
+      "wait-for-it.sh",
+      "sql-server-database:1433",
+      "-t",
+      "120",
+      "--",
+      "dotnet",
+      "test"
+    ]
+    depends_on:
+      - sql-server-database
