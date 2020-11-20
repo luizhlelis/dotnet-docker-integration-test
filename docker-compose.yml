@@ -3,6 +3,8 @@ services:
   timesheets-api:
     container_name: timesheets-api
     image: mcr.microsoft.com/dotnet/sdk:5.0
+    environment:
+      - ConnectionStrings__TimeSheetContext=Data Source=sql-server-database; Initial Catalog=TimeSheets; User Id=sa; Password=1AvenueCodePassword*
     volumes:
       - ./Timesheets:/api
     working_dir: /api
@@ -22,6 +24,8 @@ services:
   integration-tests:
     container_name: integration-tests
     image: mcr.microsoft.com/dotnet/sdk:5.0
+    environment:
+      - ConnectionStrings__TimeSheetContext=Data Source=sql-server-database; Initial Catalog=TimeSheets; User Id=sa; Password=1AvenueCodePassword*
     volumes:
       - .:/timesheets-test-api
     working_dir: /timesheets-test-api
