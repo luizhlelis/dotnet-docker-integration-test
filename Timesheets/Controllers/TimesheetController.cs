@@ -1,8 +1,9 @@
-﻿using DotnetDockerIntegrationTests.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using System;
 using System.Threading.Tasks;
+using Timesheets;
+using Timesheets.Models;
 
 namespace DotnetDockerIntegrationTests.Controllers
 {
