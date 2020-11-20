@@ -1,19 +1,44 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using DotnetDockerIntegrationTests.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Routing;
+using System;
+using System.Threading.Tasks;
 
 namespace DotnetDockerIntegrationTests.Controllers
-{  
-    public class TimesheetController : ApiController
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class TimesheetController : ControllerBase
     {
+        private readonly TimeSheetContext _dbContext;
 
-
-        public TimesheetController()
+        public TimesheetController(TimeSheetContext dbContext)
         {
-                
+            _dbContext = dbContext;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetTimesheetsByEmployeeAsync(Guid employeeId)
+        {
+            throw new NotImplementedException();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> InsertTimeSheetAsync(TimeEntry timeEntry)
+        {
+            throw new NotImplementedException();
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateTimeEntryAsync(Guid timeEntryId, TimeEntry timeEntry)
+        {
+            throw new NotImplementedException();
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteTimeEntryAsync(Guid timeEntryId)
+        {
+            throw new NotImplementedException();
         }
     }
 
