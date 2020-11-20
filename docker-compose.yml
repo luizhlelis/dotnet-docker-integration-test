@@ -31,7 +31,8 @@ services:
         "sql-server-database:1433",
         "--",
         "dotnet",
-        "test"
+        "test",
+        "tests/Timesheets.Tests/Timesheets.Tests.csproj"
       ]
     depends_on:
       - sql-server-database

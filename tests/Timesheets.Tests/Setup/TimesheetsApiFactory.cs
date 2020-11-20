@@ -8,7 +8,7 @@ namespace Timesheets.Tests.Setup
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
             builder.UseStartup<TStartup>();
-            builder.UseEnvironment("Testing");
+            //builder.UseEnvironment("Testing");
         }
     }
 }

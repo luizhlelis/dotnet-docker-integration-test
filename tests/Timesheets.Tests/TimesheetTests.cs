@@ -12,9 +12,9 @@ namespace Timesheets.Tests
     [Collection(nameof(IntegrationTestsFixtureCollection))]
     public class TimesheetTests
     {
-        private readonly IntegrationTestsFixture<StartupTests> _fixture;
+        private readonly IntegrationTestsFixture<Startup> _fixture;
 
-        public TimesheetTests(IntegrationTestsFixture<StartupTests> fixture)
+        public TimesheetTests(IntegrationTestsFixture<Startup> fixture)
         {
             _fixture = fixture;
         }
