@@ -28,6 +28,8 @@ namespace Timesheets.Models
         public DateTime Date { get; set; }
         public string Start { get; set; }
         public string End { get; set; }
+        public Guid ProjectId { get; set; }
+        public Guid EmployeeId { get; set; }
         public virtual Employee Employee { get; set; }
         public virtual Project Project { get; set; }
     }
