@@ -12,7 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
-namespace DotnetDockerIntegrationTests
+namespace Timesheets
 {
     public class Startup
     {
@@ -30,7 +30,7 @@ namespace DotnetDockerIntegrationTests
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "DotnetDockerIntegrationTests", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Timesheets", Version = "v1" });
             });
         }
 
@@ -41,7 +41,7 @@ namespace DotnetDockerIntegrationTests
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "DotnetDockerIntegrationTests v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Timesheets v1"));
             }
 
             app.UseHttpsRedirection();

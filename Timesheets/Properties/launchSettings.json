@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "DotnetDockerIntegrationTests": {
+    "Timesheets": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DotnetDockerIntegrationTests.Models
+namespace Timesheets.Models
 {
     public class Entity
     {

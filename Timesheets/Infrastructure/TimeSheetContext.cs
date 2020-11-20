@@ -1,9 +1,9 @@
-﻿using DotnetDockerIntegrationTests.Models;
+﻿using Timesheets.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 
-namespace DotnetDockerIntegrationTests
+namespace Timesheets
 {
     public class TimeSheetContext : DbContext
     {

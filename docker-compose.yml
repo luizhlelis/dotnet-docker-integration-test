@@ -1,10 +1,10 @@
 version: "3.4"
 services:
-  asp-net-five-api:
-    container_name: asp-net-five-api
+  timesheets-api:
+    container_name: timesheets-api
     image: mcr.microsoft.com/dotnet/sdk:5.0
     volumes:
-      - ./DotnetDockerIntegrationTests:/api
+      - ./Timesheets:/api
     working_dir: /api
     depends_on:
       - sql-server-database
