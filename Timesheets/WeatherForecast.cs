@@ -1,6 +1,6 @@
 using System;
 
-namespace DotnetDockerIntegrationTests
+namespace Timesheets
 {
     public class WeatherForecast
     {

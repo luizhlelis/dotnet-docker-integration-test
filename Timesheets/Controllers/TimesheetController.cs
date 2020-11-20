@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace DotnetDockerIntegrationTests.Controllers
+namespace Timesheets.Controllers
 {  
     public class TimesheetController : ApiController
     {
