@@ -35,10 +35,6 @@ services:
         "sql-server-database:1433",
         "--",
         "dotnet",
-        "restore",
-        "tests/Timesheets.Tests/Timesheets.Tests.csproj",
-        "--",
-        "dotnet",
         "test",
         "tests/Timesheets.Tests/Timesheets.Tests.csproj"
       ]
