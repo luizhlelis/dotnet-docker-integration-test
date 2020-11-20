@@ -21,17 +21,17 @@ services:
       - "1433:1433"
   integration-tests:
     container_name: integration-tests
-    build:
-      context: .
+    image: mcr.microsoft.com/dotnet/sdk:5.0
+    volumes:
+      - .:/timesheets-test-api
+    working_dir: /timesheets-test-api
     command:
-    [
-      "wait-for-it.sh",
-      "sql-server-database:1433",
-      "-t",
-      "120",
-      "--",
-      "dotnet",
-      "test"
-    ]
+      [
+        "./wait-for-it.sh",
+        "sql-server-database:1433",
+        "--",
+        "dotnet",
+        "test"
+      ]
     depends_on:
       - sql-server-database
