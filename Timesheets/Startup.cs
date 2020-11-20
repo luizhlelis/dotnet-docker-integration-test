@@ -1,3 +1,4 @@
+using FluentValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -6,6 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System;
+using Timesheets.Models;
+using Timesheets.Validators;
 
 namespace Timesheets
 {
@@ -31,6 +34,8 @@ namespace Timesheets
                 options
                     .UseSqlServer(Configuration.GetConnectionString("TimeSheetContext"))
                     .LogTo(Console.WriteLine));
+
+            services.AddScoped<IValidator<TimeEntry>, TimeEntryValidator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

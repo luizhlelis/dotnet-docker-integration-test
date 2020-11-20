@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
@@ -13,10 +14,12 @@ namespace DotnetDockerIntegrationTests.Controllers
     public class TimesheetController : ControllerBase
     {
         private readonly TimeSheetContext _dbContext;
+        private readonly IValidator<TimeEntry> _validator;
 
-        public TimesheetController(TimeSheetContext dbContext)
+        public TimesheetController(TimeSheetContext dbContext, IValidator<TimeEntry> validator)
         {
             _dbContext = dbContext;
+            _validator = validator;
         }
 
         [HttpGet]
@@ -31,8 +34,12 @@ namespace DotnetDockerIntegrationTests.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> InsertTimeSheetAsync(TimeEntry timeEntry)
+        public async Task<IActionResult> InsertTimeSheetAsync([FromBody] TimeEntry timeEntry)
         {
+            var validationResult = await _validator.ValidateAsync(timeEntry);
+            if (!validationResult.IsValid)
+                return BadRequest();
+
             await _dbContext.AddAsync(timeEntry);
             await _dbContext.SaveChangesAsync();
 
@@ -40,8 +47,12 @@ namespace DotnetDockerIntegrationTests.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateTimeEntryAsync(TimeEntry timeEntry)
+        public async Task<IActionResult> UpdateTimeEntryAsync([FromBody] TimeEntry timeEntry)
         {
+            var validationResult = await _validator.ValidateAsync(timeEntry);
+            if (!validationResult.IsValid)
+                return BadRequest();
+
             var updated = _dbContext.Update(timeEntry);
             updated.State = EntityState.Modified;
             await _dbContext.SaveChangesAsync();

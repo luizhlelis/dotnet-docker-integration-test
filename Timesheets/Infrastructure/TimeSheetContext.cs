@@ -83,24 +83,24 @@ namespace Timesheets
                     Date = new DateTime(2020, 10, 01),
                     EmployeeId = employee1.Id,
                     ProjectId = project1.Id,
-                    Start = "09:00",
-                    End = "12:00"
+                    Start = TimeSpan.FromHours(09),
+                    End = TimeSpan.FromHours(12)
                 },
                 new TimeEntry
                 {
                     Date = new DateTime(2020, 10, 01),
                     EmployeeId = employee1.Id,
                     ProjectId = project2.Id,
-                    Start = "13:00",
-                    End = "17:00"
+                    Start = TimeSpan.FromHours(13),
+                    End = TimeSpan.FromHours(17)
                 },
                 new TimeEntry
                 {
                     Date = new DateTime(2020, 10, 02),
                     EmployeeId = employee1.Id,
                     ProjectId = project2.Id,
-                    Start = "09:00",
-                    End = "12:00"
+                    Start = TimeSpan.FromHours(09),
+                    End = TimeSpan.FromHours(12)
                 });
         }
     }

@@ -26,8 +26,8 @@ namespace Timesheets.Models
     public class TimeEntry : Entity
     {
         public DateTime Date { get; set; }
-        public string Start { get; set; }
-        public string End { get; set; }
+        public TimeSpan Start { get; set; }
+        public TimeSpan End { get; set; }
         public Guid ProjectId { get; set; }
         public Guid EmployeeId { get; set; }
         public virtual Employee Employee { get; set; }
