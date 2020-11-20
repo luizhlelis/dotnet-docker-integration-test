@@ -1,0 +1,21 @@
+version: "3.4"
+services:
+  asp-net-five-api:
+    container_name: asp-net-five-api
+    image: mcr.microsoft.com/dotnet/sdk:5.0
+    volumes:
+      - ./DotnetDockerIntegrationTests:/api
+    working_dir: /api
+    depends_on:
+      - sql-server-database
+    command: "dotnet run"
+    ports:
+      - "8001:8081"
+  sql-server-database:
+    container_name: sql-server-database
+    image: mcr.microsoft.com/mssql/server
+    environment:
+      SA_PASSWORD: 1AvenueCodePassword*
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
