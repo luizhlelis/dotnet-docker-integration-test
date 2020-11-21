@@ -10,11 +10,11 @@ Sample ASP NET Core 5 API using docker-compose to run integration tests. The API
 Running the project locally requires initializing the database (SqlServer) on docker.
 
 ```
-nuget restore Timesheets.sln
+nuget restore Timesheets
 
 docker-compose up -d sql-server-database
 
-dotnet run --project Timesheets/Timesheets.csproj
+dotnet run --project Timesheets
 ```
 
 #### In a docker container via `docker-compose`
@@ -23,4 +23,20 @@ Initializes the database (SqlServer) and the Api on docker.
 
 ```
  docker-compose up timesheets-api
+ ```
+
+# Running tests
+
+#### Locally via `dotnet` command line tool
+
+```
+docker-compose up -d sql-server-database
+
+dotnet test Timesheets
+```
+
+#### In a docker container via `docker-compose`
+
+```
+ docker-compose up integration-testes
  ```
