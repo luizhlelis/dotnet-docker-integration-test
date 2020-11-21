@@ -50,11 +50,14 @@ namespace Timesheets
                 Name = "Maria",
                 Registration = "000001"
             };
-            modelBuilder.Entity<Project>().HasData(
-                project1,
-                project2,
-                project3);
-            modelBuilder.Entity<Employee>().HasData(employee1, employee2);
+            var employee3 = new Employee
+            {
+                Id = Guid.Parse("e978f409-9955-497d-8f97-917dfc054b80"),
+                Name = "Maria",
+                Registration = "000001"
+            };
+            modelBuilder.Entity<Project>().HasData(project1, project2, project3);
+            modelBuilder.Entity<Employee>().HasData(employee1, employee2, employee3);
             modelBuilder.Entity("EmployeeProject").HasData(
                 new
                 {

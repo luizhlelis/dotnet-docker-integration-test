@@ -24,7 +24,7 @@ namespace Timesheets.Tests
         [Fact]
         public void ReturnsEmptyTimesheetsList()
         {
-            var employeeId = "996b58c5-b711-42e5-b422-cbfe8ee2af43";
+            var employeeId = "e978f409-9955-497d-8f97-917dfc054b80";
             var response = _fixture.Client.GetAsync($"/api/Timesheet?employeeId={employeeId}");
 
             response.Result.StatusCode.Should().Be(HttpStatusCode.NoContent);
@@ -74,7 +74,7 @@ namespace Timesheets.Tests
             request.Content = new StringContent(JsonConvert.SerializeObject(timeEntry), Encoding.UTF8, "application/json");
             var response = await _fixture.Client.SendAsync(request);
 
-            response.StatusCode.Should().Be(HttpStatusCode.OK);
+            response.StatusCode.Should().Be(HttpStatusCode.Created);
         }
 
         [Fact]
