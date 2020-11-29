@@ -4,14 +4,10 @@ using Xunit;
 
 namespace Timesheets.Tests.Setup
 {
-    [CollectionDefinition(nameof(IntegrationTestsFixtureCollection))]
-    public class IntegrationTestsFixtureCollection : ICollectionFixture<IntegrationTestsFixture<StartupTests>>
-    { }
-
-    public class IntegrationTestsFixture<TStartup> : IDisposable where TStartup : class
+    public class IntegrationTestsFixture<TStartup> : IClassFixture<TimesheetsApiFactory<TStartup>>, IDisposable where TStartup : class
     {
         private readonly TimesheetsApiFactory<TStartup> _factory;
-        public HttpClient Client;
+        protected readonly HttpClient Client;
 
         public IntegrationTestsFixture()
         {

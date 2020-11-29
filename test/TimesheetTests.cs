@@ -11,8 +11,7 @@ using Xunit;
 
 namespace Timesheets.Tests
 {
-    [Collection(nameof(IntegrationTestsFixtureCollection))]
-    public class TimesheetTests
+    public class TimesheetTests : IClassFixture<TimesheetsApiFactory<StartupTests>>
     {
         private readonly IntegrationTestsFixture<StartupTests> _fixture;
 

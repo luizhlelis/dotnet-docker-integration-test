@@ -17,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Timesheets\Timesheets.csproj" />
+    <ProjectReference Include="..\src\Timesheets.csproj" />
   </ItemGroup>
-
 </Project>

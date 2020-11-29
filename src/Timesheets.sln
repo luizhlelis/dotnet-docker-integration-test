@@ -5,9 +5,11 @@ VisualStudioVersion = 16.0.808.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Timesheets", "Timesheets.csproj", "{8B3AB1A1-D5B6-419F-A447-785143638329}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{707BEF12-B077-40D3-B284-AB6CA869CBD6}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{707BEF12-B077-40D3-B284-AB6CA869CBD6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timesheets.Tests", "..\tests\Timesheets.Tests\Timesheets.Tests.csproj", "{BF1DC63E-DA5A-49E0-96A5-4470B5576A58}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timesheets.Tests", "..\test\Timesheets.Tests.csproj", "{BF1DC63E-DA5A-49E0-96A5-4470B5576A58}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D2E263EE-7A0D-4065-A0F7-D5CA3413C181}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,7 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BF1DC63E-DA5A-49E0-96A5-4470B5576A58} = {707BEF12-B077-40D3-B284-AB6CA869CBD6}
+		{8B3AB1A1-D5B6-419F-A447-785143638329} = {D2E263EE-7A0D-4065-A0F7-D5CA3413C181}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A39D89CF-FEE1-44E4-B83C-1279A5E3D6CF}
