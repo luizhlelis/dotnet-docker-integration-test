@@ -19,7 +19,7 @@ namespace Timesheets.Tests.Setup
                         .UseStartup<TStartup>()
                         .UseTestServer()
                         .ConfigureAppConfiguration(conf => conf.AddJsonFile("appsettings.json", optional: false).AddEnvironmentVariables())
-                        .ConfigureTestServices(services => services.AddMvc().AddApplicationPart(typeof(Startup).Assembly));
+                        .ConfigureTestServices(services => services.AddMvc().AddApplicationPart(typeof(TStartup).Assembly));
                 });
 
             return builder;

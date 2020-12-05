@@ -1,39 +1,46 @@
-using FluentAssertions;
-using Newtonsoft.Json;
+using Xunit;
 using System;
+using FluentAssertions;
 using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using Timesheets.Models;
 using Timesheets.Tests.Setup;
-using Xunit;
 
 namespace Timesheets.Tests
 {
     public class TimesheetTests : TestingCaseFixture<TestingStartup>
     {
-        [Fact]
-        public void ReturnsEmptyTimesheetsList()
+        [Fact(DisplayName = "Get timesheet nonexistent employee")]
+        public async Task GetTimesheets_NonExistentEmployee_ShouldReturnEmptyTimesheetsList()
         {
+            // Arrange
             var employeeId = "e978f409-9955-497d-8f97-917dfc054b80";
-            var response = Client.GetAsync($"/api/Timesheet?employeeId={employeeId}");
 
-            response.Result.StatusCode.Should().Be(HttpStatusCode.NoContent);
+            // Act
+            var response = await Client.GetAsync($"/api/Timesheet?employeeId={employeeId}");
+
+            // Assert
+            response.StatusCode.Should().Be(HttpStatusCode.NoContent);
         }
-
-        [Fact]
-        public void ReturnsTimesheetsList()
+        
+        [Fact(DisplayName = "Get timesheet existent employee")]
+        public async Task GetTimesheets_ExistentEmployee_ShouldReturnTimesheetsList()
         {
+            // Arrange
             var employeeId = "05a41567-b511-441b-b6aa-b74f41fb7a09";
-            var response = Client.GetAsync($"/api/Timesheet?employeeId={employeeId}");
+            
+            // Act
+            var response = await Client.GetAsync($"/api/Timesheet?employeeId={employeeId}");
 
-            response.Result.StatusCode.Should().Be(HttpStatusCode.OK);
+            // Assert
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
         }
 
-        [Fact]
-        public async Task ReturnsBadRequestOnInsertValidationFail()
+        [Fact(DisplayName = "Add Invalid Time Entry")]
+        public async Task AddTimeEntry_InvalidRequest_ShouldReturnBadRequest()
         {
+            // Arrange
             var timeEntry = new TimeEntry()
             {
                 Date = DateTime.Now,
@@ -43,16 +50,17 @@ namespace Timesheets.Tests
                 ProjectId = Guid.Empty,
             };
 
-            HttpRequestMessage request = new HttpRequestMessage(new HttpMethod("post"), "/api/Timesheet");
-            request.Content = new StringContent(JsonConvert.SerializeObject(timeEntry), Encoding.UTF8, "application/json");
-            var response = await Client.SendAsync(request);
+            // Act
+            var response = await Client.PostAsJsonAsync("/api/Timesheet", timeEntry);
 
+            // Assert
             response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
         }
-
-        [Fact]
-        public async Task ReturnsOKOnInsert()
+        
+        [Fact(DisplayName = "Add Valid Time Entry")]
+        public async Task AddTimeEntry_ValidRequest_ShouldReturnOk()
         {
+            // Arrange
             var timeEntry = new TimeEntry()
             {
                 Date = DateTime.Now,
@@ -62,19 +70,21 @@ namespace Timesheets.Tests
                 ProjectId = Guid.Parse("d567a6ce-aff3-481b-a7d0-6e63bfc31eee"),
             };
 
-            HttpRequestMessage request = new HttpRequestMessage(new HttpMethod("post"), "/api/Timesheet");
-            request.Content = new StringContent(JsonConvert.SerializeObject(timeEntry), Encoding.UTF8, "application/json");
-            var response = await Client.SendAsync(request);
+            // Act
+            var response = await Client.PostAsJsonAsync("/api/Timesheet", timeEntry);            
 
+            // Assert
             response.StatusCode.Should().Be(HttpStatusCode.Created);
         }
 
-        [Fact]
-        public void ReturnsNotFoundOnDelete()
+        [Fact(DisplayName = "Delete Nonexistent Time Entry")]
+        public async Task DeleteTimeEntry_NonExistent_ShouldReturnNotFound()
         {
-            var response = Client.DeleteAsync($"/api/Timesheet?timeEntryId={Guid.NewGuid().ToString()}");
+            // Act
+            var response = await Client.DeleteAsync($"/api/Timesheet?timeEntryId={Guid.NewGuid()}");
 
-            response.Result.StatusCode.Should().Be(HttpStatusCode.NotFound);
+            // Assert
+            response.StatusCode.Should().Be(HttpStatusCode.NotFound);
         }
     }
 }
