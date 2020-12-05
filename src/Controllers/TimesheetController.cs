@@ -54,7 +54,6 @@ namespace DotnetDockerIntegrationTests.Controllers
                 return BadRequest();
 
             var updated = _dbContext.Update(timeEntry);
-            updated.State = EntityState.Modified;
             await _dbContext.SaveChangesAsync();
 
             return Ok(updated.Entity);

@@ -38,7 +38,7 @@ Initializes the database (SqlServer) and the Api on docker.
 
   docker-compose up -d sql-server-database
 
-  dotnet test ../test/Timesheets.Tests.csproj
+  dotnet test
 ```
 
 #### In a docker container via `docker-compose`
