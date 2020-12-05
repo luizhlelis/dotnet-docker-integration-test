@@ -10,27 +10,27 @@ namespace Timesheets.Models
 
     public class Employee : Entity
     {
-        public string Name { get; set; }
-        public string Registration { get; set; }
-        public virtual ICollection<Project> Projects { get; set; }
-        public virtual ICollection<TimeEntry> TimeEntries { get; set; }
+        public string Name { get; init; }
+        public string Registration { get; init; }
+        public virtual ICollection<Project> Projects { get; init; }
+        public virtual ICollection<TimeEntry> TimeEntries { get; init; }
     }
 
     public class Project : Entity
     {
-        public string Name { get; set; }
-        public virtual ICollection<Employee> Employees { get; set; }
-        public virtual ICollection<TimeEntry> TimeEntries { get; set; }
+        public string Name { get; init; }
+        public virtual ICollection<Employee> Employees { get; init; }
+        public virtual ICollection<TimeEntry> TimeEntries { get; init; }
     }
 
     public class TimeEntry : Entity
     {
-        public DateTime Date { get; set; }
-        public TimeSpan Start { get; set; }
-        public TimeSpan End { get; set; }
-        public Guid ProjectId { get; set; }
-        public Guid EmployeeId { get; set; }
-        public virtual Employee Employee { get; set; }
-        public virtual Project Project { get; set; }
+        public DateTime Date { get; init; }
+        public TimeSpan Start { get; init; }
+        public TimeSpan End { get; init; }
+        public Guid ProjectId { get; init; }
+        public Guid EmployeeId { get; init; }
+        public virtual Employee Employee { get; init; }
+        public virtual Project Project { get; init; }
     }
 }
