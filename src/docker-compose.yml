@@ -27,16 +27,17 @@ services:
     environment:
       - ConnectionStrings__TimeSheetContext=Data Source=sql-server-database; Initial Catalog=TimeSheets; User Id=sa; Password=1AvenueCodePassword*
     volumes:
-      - .:/timesheets-test-api
-    working_dir: /timesheets-test-api
+      - .:/src
+      - ../test:/test
+    working_dir: /src
     command:
       [
-        "./wait-for-it.sh",
+        "./Scripts/wait-for-it.sh",
         "sql-server-database:1433",
         "--",
         "dotnet",
         "test",
-        "tests/Timesheets.Tests/Timesheets.Tests.csproj"
+        "../test/Timesheets.Tests.csproj"
       ]
     depends_on:
       - sql-server-database
