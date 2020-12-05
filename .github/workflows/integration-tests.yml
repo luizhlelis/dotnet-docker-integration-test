@@ -9,10 +9,9 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    env:
-      working-directory: src
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Execute tests
+        working-directory: ./src
         run: docker-compose up --exit-code-from integration-tests integration-tests
