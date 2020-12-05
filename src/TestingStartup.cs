@@ -9,11 +9,11 @@ using System;
 using Timesheets.Models;
 using Timesheets.Validators;
 
-namespace Timesheets
+namespace Timesheets.Tests.Setup
 {
-    public class StartupTests
+    public class TestingStartup
     {
-        public StartupTests(IConfiguration configuration)
+        public TestingStartup(IConfiguration configuration)
         {
             Configuration = configuration;
         }

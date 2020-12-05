@@ -11,20 +11,13 @@ using Xunit;
 
 namespace Timesheets.Tests
 {
-    public class TimesheetTests : IClassFixture<TimesheetsApiFactory<StartupTests>>
+    public class TimesheetTests : TestingCaseFixture<TestingStartup>
     {
-        private readonly IntegrationTestsFixture<StartupTests> _fixture;
-
-        public TimesheetTests(IntegrationTestsFixture<StartupTests> fixture)
-        {
-            _fixture = fixture;
-        }
-
         [Fact]
         public void ReturnsEmptyTimesheetsList()
         {
             var employeeId = "e978f409-9955-497d-8f97-917dfc054b80";
-            var response = _fixture.Client.GetAsync($"/api/Timesheet?employeeId={employeeId}");
+            var response = Client.GetAsync($"/api/Timesheet?employeeId={employeeId}");
 
             response.Result.StatusCode.Should().Be(HttpStatusCode.NoContent);
         }
@@ -33,7 +26,7 @@ namespace Timesheets.Tests
         public void ReturnsTimesheetsList()
         {
             var employeeId = "05a41567-b511-441b-b6aa-b74f41fb7a09";
-            var response = _fixture.Client.GetAsync($"/api/Timesheet?employeeId={employeeId}");
+            var response = Client.GetAsync($"/api/Timesheet?employeeId={employeeId}");
 
             response.Result.StatusCode.Should().Be(HttpStatusCode.OK);
         }
@@ -52,7 +45,7 @@ namespace Timesheets.Tests
 
             HttpRequestMessage request = new HttpRequestMessage(new HttpMethod("post"), "/api/Timesheet");
             request.Content = new StringContent(JsonConvert.SerializeObject(timeEntry), Encoding.UTF8, "application/json");
-            var response = await _fixture.Client.SendAsync(request);
+            var response = await Client.SendAsync(request);
 
             response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
         }
@@ -71,7 +64,7 @@ namespace Timesheets.Tests
 
             HttpRequestMessage request = new HttpRequestMessage(new HttpMethod("post"), "/api/Timesheet");
             request.Content = new StringContent(JsonConvert.SerializeObject(timeEntry), Encoding.UTF8, "application/json");
-            var response = await _fixture.Client.SendAsync(request);
+            var response = await Client.SendAsync(request);
 
             response.StatusCode.Should().Be(HttpStatusCode.Created);
         }
@@ -79,7 +72,7 @@ namespace Timesheets.Tests
         [Fact]
         public void ReturnsNotFoundOnDelete()
         {
-            var response = _fixture.Client.DeleteAsync($"/api/Timesheet?timeEntryId={Guid.NewGuid().ToString()}");
+            var response = Client.DeleteAsync($"/api/Timesheet?timeEntryId={Guid.NewGuid().ToString()}");
 
             response.Result.StatusCode.Should().Be(HttpStatusCode.NotFound);
         }
